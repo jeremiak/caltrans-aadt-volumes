@@ -1,7 +1,6 @@
 name: Scrape AADT traffic volume
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron:  '21 11 * * *'
@@ -35,6 +34,7 @@ jobs:
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"
+        git pull
         git add caltrans-aadt-traffic-volume.json
         timestamp=$(date -u)
         git commit -m "Latest data: ${timestamp}" || exit 0
